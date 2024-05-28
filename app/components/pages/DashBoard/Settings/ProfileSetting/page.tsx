@@ -6,6 +6,8 @@ import { FaSuitcase } from "react-icons/fa";
 import { MdOutlineMyLocation } from "react-icons/md";
 import { MdCancel } from "react-icons/md";
 import toast from 'react-hot-toast';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import { DeleteProfile } from '@/app/Services/operations/ProfileHandler';
 
 
 
@@ -16,12 +18,26 @@ const page = ({userData}) => {
         role:"",
         location:"",
     });
+    const { user, error, isLoading } = useUser();
     
     const handlechanges=()=>{
          toast.success(
             'you will notify when anybody will post a project'
          )
     }
+
+    const handleDeleteProfile=async()=>{
+      const logoutResponse = await fetch('/api/auth/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+        await DeleteProfile(user?.email)
+    }
+
+
   return (
     <div className=' mt-10'>
          <div  className='text-slate-800 text-xl mt-4  font-semibold '>Contact Info</div>
@@ -75,7 +91,7 @@ const page = ({userData}) => {
            <div className=' mt-5 flex flex-col gap-5'>
                      <p className=' text-xl text-slate-800 font-semibold'>Delete Your Account</p>
                      <p  className=' text-lg text-slate-600  max-w-[67%]'>If You delete your copartner account,you will no longer to get information about the matched jobs,following employers,and job alerts,shortlisted project and more. You will be abandoned from all the services of copartner.com</p>
-                     <button className=' text-red-700  text-xl flex gap-2 items-center font-semibold'>
+                     <button className=' text-red-700  text-xl flex gap-2 items-center font-semibold cursor-pointer' onClick={handleDeleteProfile}>
                         <MdCancel className=' text-2xl'/>
                         Close Account
                     </button>

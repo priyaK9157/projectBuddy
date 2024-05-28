@@ -1,10 +1,11 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DashboardPage from "../../../commonPage/DashboardPage"
 import Image from 'next/image'
 import not_found from "../../../Assets/404.png"
 import { useUser } from '@auth0/nextjs-auth0/client'
-import { findProjectByEmail } from '@/app/Services/operations/ProjectHandler'
+import { DeleteProject, findProjectByEmail } from '@/app/Services/operations/ProjectHandler'
+import toast from 'react-hot-toast'
 
 const page = ({userData}) => {
     const { user, error, isLoading } = useUser();
@@ -21,7 +22,19 @@ const page = ({userData}) => {
     if(user && projectData==null){
         fetchproject()
     }
+  
+    const deleteProject=async()=>{
+        const response=await DeleteProject(deleteproject);
+        if(response)
+            {
+                toast.success("Project Deleted SuccessFully Please Reload")
+                setdeleteproject(null);
+            }
+    }
 
+    if(deleteproject!=null){
+         deleteProject();
+    }
   return (
     <div className=' w-[150%] p-20  '>
          <p className=' text-slate-800 text-2xl font-semibold'>Your's Project ({projectData?.length})</p>

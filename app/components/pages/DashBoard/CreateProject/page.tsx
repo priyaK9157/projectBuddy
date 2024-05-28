@@ -186,6 +186,16 @@ const Page = () => {
             <MdOutlineCloudUpload className='mx-auto text-5xl text-blue-700' />
             <p className='mx-auto'><span className='text-blue-700 text-lg font-bold mx-auto'>Browse photo</span> or drop here</p>
             <p className='text-slate-500 mx-auto'>A photo larger than 400 pixels works best. Max photo size 5 MB</p>
+            {formData.files.length > 0 && (
+              <div className='mt-3'>
+                <p className='text-lg text-slate-800 font-semibold'>Selected Files:</p>
+                <ul className='list-disc pl-5'>
+                  {formData.files.map((file, index) => (
+                    <li key={index} className='text-slate-600'>{file.name}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
 

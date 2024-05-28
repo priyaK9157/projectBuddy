@@ -18,7 +18,7 @@ const DashboardPage = ({cardData,Location="India",deleteicon,setdeleteproject}) 
     return params.toString();
   };
 
-  console.log("de",deleteicon=="true")
+ 
 
 
   
@@ -63,7 +63,7 @@ function handleNavigate(projectid) {
             </div>
             {
                deleteicon=="true" ? (
-                    <div className=' bg-red-100 rounded-lg p-5 ' onClick={()=>{
+                    <div className=' bg-red-100 rounded-lg p-5 cursor-pointer ' onClick={()=>{
                       setdeleteproject(cardData?._id)
                     }}>
                     <RiDeleteBack2Line className=' text-red-500 font-semibold text-2xl'/>

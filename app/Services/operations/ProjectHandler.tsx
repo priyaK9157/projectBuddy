@@ -88,14 +88,11 @@ export const ApplyProject = async (email, projectid) => {
   }
 };
 
-export const DeleteProject = async (email, projectid) => {
+export const DeleteProject = async ( projectId) => {
   const loadingToast = toast.loading("Applying to project...");
   try {
-    const response = await axios.post(ProjectApiDetail.applyProject, { email, projectid });
+    const response = await axios.post(ProjectApiDetail.deleteProject, { projectId });
     toast.dismiss(loadingToast);
-    if(response){
-      toast.success("Applied to project successfully!");
-    }
     return response;
   } catch (error) {
     toast.dismiss(loadingToast);

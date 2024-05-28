@@ -62,10 +62,11 @@ export const UpdateResume = async (file, Email) => {
     }
 };
 
-export const DeleteProfile = async (data) => {
+export const DeleteProfile = async (Email) => {
     try {
-        const response = await axios.delete(profileApiDetail.DeleteProfile, { data });
+        const response = await axios.post(profileApiDetail.deleteProfile, { Email });
         if (response) {
+            toast.success("Account Deleted SuccessFully")
             return response;
         }
     } catch (error) {
