@@ -5,6 +5,7 @@ import front from "./components/Assets/front.jpg"
 import NavBar from "./components/commonPage/Navbar"
 import ProfileClient from "./profile/components/user-client";
 import { Router } from "next/router";
+import HomePage from "./components/pages/HomePage";
 
 
 export default async function Home() {
@@ -18,17 +19,7 @@ export default async function Home() {
     <div className=''>
       <ProfileClient/>
       <NavBar/>
-      <div className='flex flex-row justify-center items-center -mt-2'>
-        <div className='flex flex-col w-1/2 gap-10'>
-          <p className='text-xl font-bold'>Find a Project that suits your interest & skills.</p>
-          <p className="text-base w-2/3">
-            Creating a successful project involves defining clear and specific goals, developing a comprehensive plan with timelines and milestones, and maintaining open, regular communication with stakeholders.
-          </p>
-        </div>
-        <div className=''>
-          <Image src={front} alt="HomePic" width={300} height={300} />
-        </div>
-      </div>
+       <HomePage/>
       
     </div>
   );
